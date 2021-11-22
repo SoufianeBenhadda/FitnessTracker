@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FitnessTracker</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="submit">Submit</string>
+    <string name="username">Username</string>
+</resources>
