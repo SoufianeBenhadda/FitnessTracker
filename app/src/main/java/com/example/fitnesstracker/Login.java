@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ public class Login extends AppCompatActivity {
 
     private EditText username;
     private EditText password;
+    private Button login;
     private User user;
 
     @Override
@@ -27,28 +29,39 @@ public class Login extends AppCompatActivity {
 
         username=findViewById(R.id.username);
         password=findViewById(R.id.password);
+        login=findViewById(R.id.button3);
 
-    }
-
-    public void authenticate(View view) throws ExecutionException, InterruptedException {
-        String usr,pwd;
-        Log.d("auth","Auth");
-        usr=username.getText().toString();
-        pwd=password.getText().toString();
-        Log.d("usr",usr);
-        Log.d("pwd",pwd);
-        user=new LoginDao().execute(usr,pwd).get();
-        if(user==null){
-            Toast toast=Toast.makeText(this,"Error",Toast.LENGTH_LONG);
-            toast.show();
-            Log.d("myerror","Error");
-        }
-        else{
-            startActivity(new Intent(this,Home.class));
-            Toast toast=Toast.makeText(this,"Logged",Toast.LENGTH_LONG);
-            toast.show();
-            Log.d("logged","Logged");
-        }
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String usr,pwd;
+                Log.d("auth","Auth");
+                usr=username.getText().toString();
+                pwd=password.getText().toString();
+                Log.d("usr",usr);
+                Log.d("pwd",pwd);
+                try {
+                    user=new LoginDao().execute(usr,pwd).get();
+                }
+                catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(user==null){
+                    Toast toast=Toast.makeText(getApplicationContext(),"Your username or password is incorrect",Toast.LENGTH_LONG);
+                    toast.show();
+                    Log.d("myerror","Error");
+                }
+                else{
+                    startActivity(new Intent(getApplicationContext(),Home.class));
+                    Toast toast=Toast.makeText(getApplicationContext(),"Logged",Toast.LENGTH_LONG);
+                    toast.show();
+                    Log.d("logged","Logged");
+                }
+            }
+        });
 
     }
 }
