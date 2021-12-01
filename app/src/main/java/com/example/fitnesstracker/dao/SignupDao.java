@@ -23,12 +23,12 @@ public class SignupDao extends AsyncTask<String, Void, User> {
 
             String username = params[0];
             String password = params[1];
-            String firstname=params[2];
-            String lastname=params[3];
-            String age=params[4];
+            String firstname=params[6];
+            String lastname=params[7];
+            String age=params[2];
             String weight=params[5];
-            String height=params[6];
-            String gender=params[7];
+            String height=params[4];
+            String gender=params[3];
 
 
             //Connection connection=new DBConnexion().getConnection();
@@ -37,7 +37,13 @@ public class SignupDao extends AsyncTask<String, Void, User> {
             Connection connection = DriverManager.getConnection("jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5454989", "sql5454989", "hBph3MuruI");
             //Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11452971", "sql11452971", "WAYSFm5dqX");
 
+            /*String sql="INSERT INTO user (username,password,age,gender,height,weight,firstName,lastName)" +
+                    " VALUES('"+username+"','"+password+"',"+Integer.parseInt(age)+",'"
+                    +gender+"',"+Double.parseDouble(height)+","+Double.parseDouble(weight)+
+                    ",'"+firstname+"','"+lastname+"')";
 
+            Statement st=connection.createStatement();
+            st.executeUpdate(sql);*/
 
             String sql="INSERT INTO user(username,password,age,gender,height,weight,firstName,lastName)" +
                     " VALUES(?,?,?,?,?,?,?,?)";
@@ -52,7 +58,7 @@ public class SignupDao extends AsyncTask<String, Void, User> {
             statement.setString(8,lastname);
             //Log.d("username",username);
             //statement.setString(9,null);
-            statement.execute();
+            statement.executeUpdate();
 
             user = new User();
             user.setUsername(username);
@@ -70,7 +76,7 @@ public class SignupDao extends AsyncTask<String, Void, User> {
         }
         catch(Exception e)
         {
-            //error = e.toString();
+            //excep = e.toString();
         }
 
         return user;
