@@ -14,5 +14,4 @@
     <string name="last_name">Last Name</string>
     <string name="female">Female</string>
     <string name="male">Male</string>
-    <string name="confirm_password">Confirm Password</string>
 </resources>
