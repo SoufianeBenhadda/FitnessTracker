@@ -2,7 +2,9 @@ package com.example.fitnesstracker.model;
 
 import android.util.Log;
 
-public class Excercise {
+import java.io.Serializable;
+
+public class Excercise implements Serializable {
     private int id;
     private String title;
     private String description;

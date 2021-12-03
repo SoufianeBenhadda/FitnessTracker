@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fitnesstracker.model.Excercise;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -57,10 +58,9 @@ public class CustomListAdapter  extends BaseAdapter {
         holder.exoTitle.setText(exo.getTitle());
         holder.exoDesc.setText(exo.getDescription());
 
-        //int imageId = this.getMipmapResIdByName(country.getFlagName());
 
-        //holder.flagView.setImageResource(imageId);
-
+       Picasso.with(context).load(exo.getImage())
+                .into(holder.exoIcon);
         return convertView;
     }
 

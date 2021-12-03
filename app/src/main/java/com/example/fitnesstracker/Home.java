@@ -18,8 +18,9 @@ import com.example.fitnesstracker.model.User;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity   {
     private List<Excercise> exos;
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,9 @@ public class Home extends AppCompatActivity {
         List<Excercise> image_details = getListData();
         final ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(new CustomListAdapter(this, image_details));
+
+        Intent i = getIntent();
+        user = (User)i.getSerializableExtra("user");
 
         // When the user clicks on the ListItem
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -36,6 +40,10 @@ public class Home extends AppCompatActivity {
                 Object o = listView.getItemAtPosition(position);
                 Excercise exo = (Excercise) o;
                 Toast.makeText(getApplicationContext(), "Selected :" + " " + exo, Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getApplicationContext(), Exerciseinfo.class);
+                i.putExtra("Exo",exo);
+                i.putExtra("user",user);
+                startActivity(i);
             }
         });
     }

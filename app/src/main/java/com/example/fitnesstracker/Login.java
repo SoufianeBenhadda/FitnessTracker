@@ -55,7 +55,10 @@ public class Login extends AppCompatActivity {
                     Log.d("myerror","Error");
                 }
                 else{
-                    startActivity(new Intent(getApplicationContext(),Home.class));
+                    //startActivity(new Intent(getApplicationContext(),Home.class));
+                    Intent i = new Intent(getApplicationContext(), Home.class);
+                    i.putExtra("user",user);
+                    startActivity(i);
                     Toast toast=Toast.makeText(getApplicationContext(),"Logged",Toast.LENGTH_LONG);
                     toast.show();
                     Log.d("logged","Logged");
