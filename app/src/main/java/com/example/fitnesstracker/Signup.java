@@ -11,11 +11,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.fitnesstracker.dao.SignupDao;
 import com.example.fitnesstracker.model.User;
+import com.squareup.picasso.Picasso;
 
 import java.util.concurrent.ExecutionException;
 
@@ -25,12 +27,14 @@ public class Signup extends AppCompatActivity {
     private RadioGroup rgroup;
     private Button signup;
     private User user;
+    private ImageView logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
+        logo=findViewById(R.id.imageView);
+        Picasso.with(this).load("https://i.postimg.cc/RFqr8CzG/com-bluecorner-totalgym-Hi-App-Here-com.png").into(logo);
         username = findViewById(R.id.r_username);
         firstname = findViewById(R.id.r_first_name);
         lastname = findViewById(R.id.r_last_name);
@@ -57,7 +61,7 @@ public class Signup extends AppCompatActivity {
                 s_lastname = lastname.getText().toString();
                 if (rgroup.getCheckedRadioButtonId() == R.id.radioButton) gender = "female";
                 else gender = "male";
-                //String excep;
+
                 if (usr.length() == 0 || pwd.length() == 0 || s_age.length() == 0 || s_height.length() == 0 || s_weight.length() == 0 || s_firstname.length() == 0
                         || s_lastname.length() == 0) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Please make sure you entered all the fields", Toast.LENGTH_LONG);
@@ -89,7 +93,7 @@ public class Signup extends AppCompatActivity {
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-                                startActivity(new Intent(getApplicationContext(), Home.class));
+                                startActivity(new Intent(getApplicationContext(), Login.class));
                                 Toast toast = Toast.makeText(getApplicationContext(), "User successfully registered", Toast.LENGTH_LONG);
                                 toast.show();
                             }
@@ -97,11 +101,9 @@ public class Signup extends AppCompatActivity {
                         buildDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
                             }
                         });
                         buildDialog.show();
-
                     }
                 }
 

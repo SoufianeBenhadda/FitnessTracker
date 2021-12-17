@@ -1,6 +1,11 @@
 package com.example.fitnesstracker.model;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String username;
     private String password;
@@ -11,6 +16,7 @@ public class User {
     private String picture;
     private String firstName;
     private String lastName;
+    private String role;
 
     public User() {
     }
@@ -98,4 +104,13 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
 }

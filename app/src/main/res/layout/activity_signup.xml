@@ -7,30 +7,18 @@
     tools:context=".Signup">
 
     <EditText
-        android:id="@+id/r_height"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="@string/height"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/r_weight"
-        app:layout_constraintTop_toBottomOf="@+id/r_weight"
-        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
-
-    <EditText
         android:id="@+id/r_weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/weight"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/r_age"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/r_age"
         tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
@@ -38,7 +26,7 @@
         android:id="@+id/r_last_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/last_name"
         android:importantForAutofill="no"
@@ -52,80 +40,83 @@
         android:id="@+id/r_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="17dp"
         android:ems="10"
         android:hint="@string/age"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/r_last_name"
-        app:layout_constraintTop_toBottomOf="@+id/r_last_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/r_confirm"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/r_first_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="72dp"
         android:ems="10"
         android:hint="@string/first_name"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/r_username"
-        app:layout_constraintTop_toBottomOf="@+id/r_username"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/r_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/username"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/r_last_name"
+        app:layout_constraintTop_toBottomOf="@+id/r_last_name"
         tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
 
     <EditText
         android:id="@+id/r_password"
-        android:layout_width="156dp"
+        android:layout_width="187dp"
         android:layout_height="44dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/password"
         android:importantForAutofill="no"
         android:inputType="textPassword"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/r_height"
+        app:layout_constraintStart_toStartOf="@+id/r_username"
+        app:layout_constraintTop_toBottomOf="@+id/r_username"
         tools:ignore="TextContrastCheck,TextContrastCheck,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="72dp"
         android:text="@string/sign_up"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toTopOf="@+id/r_height" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="168dp"
-        android:layout_height="78dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="135dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/r_password">
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <RadioButton
             android:id="@+id/radioButton"
@@ -140,20 +131,53 @@
             android:layout_height="37dp"
             android:text="@string/male"
             tools:ignore="TouchTargetSizeCheck" />
+
     </RadioGroup>
 
     <EditText
         android:id="@+id/r_confirm"
         android:layout_width="187dp"
         android:layout_height="44dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="@string/confirm_password"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/r_password"
-        app:layout_constraintStart_toEndOf="@+id/r_password"
-        tools:ignore="TouchTargetSizeCheck"
-        android:importantForAutofill="no" />
+        app:layout_constraintStart_toStartOf="@+id/r_password"
+        app:layout_constraintTop_toBottomOf="@+id/r_password"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <EditText
+        android:id="@+id/r_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/height"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/r_weight"
+        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

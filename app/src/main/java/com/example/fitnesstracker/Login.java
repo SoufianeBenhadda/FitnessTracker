@@ -2,7 +2,9 @@ package com.example.fitnesstracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +23,8 @@ public class Login extends AppCompatActivity {
     private EditText password;
     private Button login;
     private User user;
+    private String msg;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,8 @@ public class Login extends AppCompatActivity {
         username=findViewById(R.id.username);
         password=findViewById(R.id.password);
         login=findViewById(R.id.button3);
+
+        sp=getSharedPreferences("session", Context.MODE_PRIVATE);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,13 +47,20 @@ public class Login extends AppCompatActivity {
                 Log.d("usr",usr);
                 Log.d("pwd",pwd);
                 try {
+
                     user=new LoginDao().execute(usr,pwd).get();
+                    Log.d("msg",msg);
                 }
                 catch (ExecutionException e) {
                     e.printStackTrace();
+
                 }
                 catch (InterruptedException e) {
                     e.printStackTrace();
+
+                }
+                catch(Exception e){
+                    Log.d("test",e.toString());
                 }
                 if(user==null){
                     Toast toast=Toast.makeText(getApplicationContext(),"Your username or password is incorrect",Toast.LENGTH_LONG);
@@ -55,10 +68,27 @@ public class Login extends AppCompatActivity {
                     Log.d("myerror","Error");
                 }
                 else{
-                    startActivity(new Intent(getApplicationContext(),Home.class));
+                    if(user.getRole().equals("Client")){
+                        /*Intent intent=new Intent(getApplicationContext(),ClientPrivateConversation.class);
+                        intent.putExtra("username",user.getUsername());
+                        startActivity(intent);*/
+                        Intent i = new Intent(getApplicationContext(), Home.class);
+                        i.putExtra("user",user);
+                        startActivity(i);
+                    }
+                    else if(user.getRole().equals("Coach")){
+                        Intent intent=new Intent(getApplicationContext(),Conversations.class);
+                        intent.putExtra("username",user.getUsername());
+                        startActivity(intent);
+                    }
+                    SharedPreferences.Editor editor=sp.edit();
+                    editor.putString("session_username",usr);
+                    editor.commit();
                     Toast toast=Toast.makeText(getApplicationContext(),"Logged",Toast.LENGTH_LONG);
                     toast.show();
                     Log.d("logged","Logged");
+
+
                 }
             }
         });

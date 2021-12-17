@@ -1,16 +1,12 @@
 package com.example.fitnesstracker.dao;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
-import com.example.fitnesstracker.connection.DBConnexion;
 import com.example.fitnesstracker.model.User;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class SignupDao extends AsyncTask<String, Void, User> {
 
@@ -34,7 +30,7 @@ public class SignupDao extends AsyncTask<String, Void, User> {
             //Connection connection=new DBConnexion().getConnection();
             Class.forName("com.mysql.jdbc.Driver");
             //Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.12:3306/fitness", "user1", "1234");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://sql5.freemysqlhosting.net:3306/sql5454989", "sql5454989", "hBph3MuruI");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11458541", "sql11458541", "KV5M53tUtZ");
             //Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11452971", "sql11452971", "WAYSFm5dqX");
 
             /*String sql="INSERT INTO user (username,password,age,gender,height,weight,firstName,lastName)" +

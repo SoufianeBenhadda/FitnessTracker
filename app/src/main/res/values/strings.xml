@@ -15,4 +15,11 @@
     <string name="female">Female</string>
     <string name="male">Male</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="flname">TextView</string>
+    <string name="vusername">TextView</string>
+    <string name="todo">TODO</string>
+    <string name="user_conv">Name</string>
+    <string name="send">Send</string>
 </resources>
