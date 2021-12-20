@@ -69,9 +69,6 @@ public class Login extends AppCompatActivity {
                 }
                 else{
                     if(user.getRole().equals("Client")){
-                        /*Intent intent=new Intent(getApplicationContext(),ClientPrivateConversation.class);
-                        intent.putExtra("username",user.getUsername());
-                        startActivity(intent);*/
                         Intent i = new Intent(getApplicationContext(), Home.class);
                         i.putExtra("user",user);
                         startActivity(i);

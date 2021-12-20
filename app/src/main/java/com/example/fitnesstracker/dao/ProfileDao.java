@@ -31,8 +31,8 @@ public class ProfileDao extends AsyncTask<String, Void, User> {
 
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11458541", "sql11458541", "KV5M53tUtZ");
-
+            //Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11458541", "sql11458541", "KV5M53tUtZ");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11460118", "sql11460118", "nlikDMLg5c");
 
             String sql="UPDATE user SET age =?,weight=?,height=? WHERE username=?";
             PreparedStatement statement=connection.prepareStatement(sql);

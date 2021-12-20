@@ -25,8 +25,8 @@ public class GetMessagesDao extends AsyncTask<Integer, Void, List<ChatMessage>> 
 
             Class.forName("com.mysql.jdbc.Driver");
             //Connection connection = DriverManager.getConnection("jdbc:mysql://10.12.131.24:3306/fitness", "user1", "1234");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11458541", "sql11458541", "KV5M53tUtZ");
-
+            //Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11458541", "sql11458541", "KV5M53tUtZ");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11460118", "sql11460118", "nlikDMLg5c");
 
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM chatmessage where conversation_id=?");
             statement.setInt(1,conversation_id);
