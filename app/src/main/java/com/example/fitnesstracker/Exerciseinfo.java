@@ -36,14 +36,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
-import de.codecrafters.tableview.TableView;
-import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
-import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
 
 public class Exerciseinfo extends AppCompatActivity {
     TextView exoTitle;
     ImageView exoImg;
     Button validate;
+    Button graph;
     EditText weight;
     EditText reps;
 
@@ -72,6 +70,7 @@ public class Exerciseinfo extends AppCompatActivity {
         exoTitle=findViewById(R.id.textView_ExoName);
         exoImg=findViewById(R.id.imageView_exoimage);
         validate=findViewById(R.id.button_validate);
+        graph=findViewById(R.id.button_validate2);
         weight=findViewById(R.id.TextNumber_weight);
         reps=findViewById(R.id.TextNumber_Reps);
         Intent i = getIntent();
@@ -192,6 +191,19 @@ public class Exerciseinfo extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+
+                Toast toast=Toast.makeText(getApplicationContext(),"Tracking successfully registered",Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+
+        graph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), RmGraph.class);
+                i.putExtra("Exo",exo);
+                i.putExtra("user",user);
+                startActivity(i);
 
                 Toast toast=Toast.makeText(getApplicationContext(),"Tracking successfully registered",Toast.LENGTH_LONG);
                 toast.show();

@@ -24,6 +24,9 @@
             android:name=".Exerciseinfo"
             android:exported="true" />
         <activity
+            android:name=".RmGraph"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

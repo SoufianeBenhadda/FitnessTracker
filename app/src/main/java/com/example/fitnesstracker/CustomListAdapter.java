@@ -6,34 +6,40 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fitnesstracker.model.Excercise;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CustomListAdapter  extends BaseAdapter {
+public class CustomListAdapter  extends BaseAdapter implements Filterable {
 
     private List<Excercise> listData;
+    private List<Excercise> listDataFiltred;
     private LayoutInflater layoutInflater;
     private Context context;
 
     public CustomListAdapter(Context aContext,  List<Excercise> listData) {
-        this.context = aContext;
+
         this.listData = listData;
+        this.listDataFiltred= listData;
+        this.context = aContext;
         layoutInflater = LayoutInflater.from(aContext);
     }
 
     @Override
     public int getCount() {
-        return listData.size();
+        return listDataFiltred.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return listData.get(position);
+        return listDataFiltred.get(position);
     }
 
     @Override
@@ -54,7 +60,7 @@ public class CustomListAdapter  extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Excercise exo = this.listData.get(position);
+        Excercise exo = this.listDataFiltred.get(position);
         holder.exoTitle.setText(exo.getTitle());
         holder.exoDesc.setText(exo.getDescription());
 
@@ -71,6 +77,47 @@ public class CustomListAdapter  extends BaseAdapter {
         int resID = context.getResources().getIdentifier(resName , "mipmap", pkgName);
         Log.i("CustomListView", "Res Name: "+ resName+"==> Res ID = "+ resID);
         return resID;
+    }
+    @Override
+    public Filter getFilter() {
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+
+                FilterResults filterResults = new FilterResults();
+                if(constraint == null || constraint.length() == 0){
+                    filterResults.count = listData.size();
+                    filterResults.values = listData;
+
+                }else{
+                    List<Excercise> resultsModel = new ArrayList<>();
+                    String searchStr = constraint.toString().toLowerCase();
+
+                    for(Excercise itemsModel:listData){
+                        if(itemsModel.getTitle().toLowerCase().contains(searchStr)){
+                            resultsModel.add(itemsModel);
+                            Log.d("MESSAAGE writen",searchStr );
+
+                        }
+                        filterResults.count = resultsModel.size();
+                        filterResults.values = resultsModel;
+                    }
+
+
+                }
+
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+
+                listDataFiltred = (List<Excercise>) results.values;
+                notifyDataSetChanged();
+
+            }
+        };
+        return filter;
     }
 
     static class ViewHolder {
