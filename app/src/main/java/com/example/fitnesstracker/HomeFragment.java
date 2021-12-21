@@ -38,6 +38,8 @@ public class HomeFragment extends Fragment {
         // When the user clicks on the ListItem
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+
+
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                 Object o = listView.getItemAtPosition(position);
@@ -47,18 +49,21 @@ public class HomeFragment extends Fragment {
                 i.putExtra("Exo",exo);
                 i.putExtra("user",user);
                 startActivity(i);*/
-                FragmentTransaction ft =  getActivity().getSupportFragmentManager().beginTransaction();
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                Exerciseinfo exoinfo = new Exerciseinfo();
+                //container.clearDisappearingChildren();
 
-                Bundle bundle = new Bundle();
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    Exerciseinfo exoinfo = new Exerciseinfo();
 
-                bundle.putSerializable("user", user);
-                bundle.putSerializable("exo", exo);
-                exoinfo.setArguments(bundle);
-                ft.replace(android.R.id.content, exoinfo);
-                ft.addToBackStack(null);
-                ft.commit();
+                    Bundle bundle = new Bundle();
+
+                    bundle.putSerializable("user", user);
+                    bundle.putSerializable("exo", exo);
+                    exoinfo.setArguments(bundle);
+                    ft.replace(R.id.fragment_container, exoinfo);
+                    ft.addToBackStack(null);
+                    ft.commit();
+
             }
         });
         return view;
