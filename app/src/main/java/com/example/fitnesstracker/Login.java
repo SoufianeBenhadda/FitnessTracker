@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fitnesstracker.dao.LoginDao;
@@ -24,17 +25,25 @@ public class Login extends AppCompatActivity {
     private Button login;
     private User user;
     private String msg;
+    private TextView sign;
     SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_main);
 
         username=findViewById(R.id.username);
         password=findViewById(R.id.password);
         login=findViewById(R.id.button3);
-
+        sign=findViewById(R.id.tsignup);
+        sign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Signup.class));
+                Log.d("sign up","Sign Up");
+            }
+        });
         sp=getSharedPreferences("session", Context.MODE_PRIVATE);
 
         login.setOnClickListener(new View.OnClickListener() {

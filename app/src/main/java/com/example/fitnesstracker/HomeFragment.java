@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
                 bundle.putSerializable("user", user);
                 bundle.putSerializable("exo", exo);
                 exoinfo.setArguments(bundle);
-                ft.replace(android.R.id.content, exoinfo);
+                ft.replace(R.id.fragment_container, exoinfo);
                 ft.addToBackStack(null);
                 ft.commit();
             }

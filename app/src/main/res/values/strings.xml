@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FitnessTracker</string>
+    <string name="app_name">Fitness Tracker</string>
     <string name="login">Login</string>
     <string name="signup">Sign Up</string>
     <string name="submit">Submit</string>

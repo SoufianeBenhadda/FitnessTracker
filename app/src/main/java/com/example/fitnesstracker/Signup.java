@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fitnesstracker.dao.SignupDao;
@@ -28,13 +29,13 @@ public class Signup extends AppCompatActivity {
     private Button signup;
     private User user;
     private ImageView logo;
+    private TextView signin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        logo=findViewById(R.id.imageView);
-        Picasso.with(this).load("https://i.postimg.cc/RFqr8CzG/com-bluecorner-totalgym-Hi-App-Here-com.png").into(logo);
+
         username = findViewById(R.id.r_username);
         firstname = findViewById(R.id.r_first_name);
         lastname = findViewById(R.id.r_last_name);
@@ -45,6 +46,14 @@ public class Signup extends AppCompatActivity {
         confirm_password = findViewById(R.id.r_confirm);
         rgroup = findViewById(R.id.radioGroup);
         signup = findViewById(R.id.button4);
+        signin=findViewById(R.id.tsignin);
+        signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                Log.d("sign up","Sign Up");
+            }
+        });
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +102,7 @@ public class Signup extends AppCompatActivity {
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-                                startActivity(new Intent(getApplicationContext(), Login.class));
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 Toast toast = Toast.makeText(getApplicationContext(), "User successfully registered", Toast.LENGTH_LONG);
                                 toast.show();
                             }

@@ -2,41 +2,104 @@ package com.example.fitnesstracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Toolbar;
+
+import com.example.fitnesstracker.dao.LoginDao;
+import com.example.fitnesstracker.model.User;
+
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
+    private EditText username;
+    private EditText password;
     private Button login;
+    private User user;
+    private String msg;
+    private TextView sign;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        login=findViewById(R.id.button);
+        username=findViewById(R.id.username);
+        password=findViewById(R.id.password);
+        login=findViewById(R.id.button3);
+        sign=findViewById(R.id.tsignup);
+        sign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Signup.class));
+                Log.d("sign up","Sign Up");
+            }
+        });
+        sp=getSharedPreferences("session", Context.MODE_PRIVATE);
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Login.class));
-                Log.d("login","Login");
+                String usr,pwd;
+                Log.d("auth","Auth");
+                usr=username.getText().toString();
+                pwd=password.getText().toString();
+                Log.d("usr",usr);
+                Log.d("pwd",pwd);
+                try {
+
+                    user=new LoginDao().execute(usr,pwd).get();
+                    Log.d("msg",msg);
+                }
+                catch (ExecutionException e) {
+                    e.printStackTrace();
+
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+
+                }
+                catch(Exception e){
+                    Log.d("test",e.toString());
+                }
+                if(user==null){
+                    Toast toast=Toast.makeText(getApplicationContext(),"Your username or password is incorrect",Toast.LENGTH_LONG);
+                    toast.show();
+                    Log.d("myerror","Error");
+                }
+                else{
+                    if(user.getRole().equals("Client")){
+                        Intent i = new Intent(getApplicationContext(), Home.class);
+                        i.putExtra("user",user);
+                        startActivity(i);
+                    }
+                    else if(user.getRole().equals("Coach")){
+                        Intent intent=new Intent(getApplicationContext(),Conversations.class);
+                        intent.putExtra("username",user.getUsername());
+                        startActivity(intent);
+                    }
+                    SharedPreferences.Editor editor=sp.edit();
+                    editor.putString("session_username",usr);
+                    editor.commit();
+                    Toast toast=Toast.makeText(getApplicationContext(),"Logged",Toast.LENGTH_LONG);
+                    toast.show();
+                    Log.d("logged","Logged");
+
+
+                }
             }
         });
 
-    }
-
-    /*public void login(View view){
-        startActivity(new Intent(this,Login.class));
-        Log.d("login","Login");
-    }*/
-
-
-    public void signup(View view){
-        startActivity(new Intent(this,Signup.class));
-        Log.d("signup","Signup");
     }
 }
