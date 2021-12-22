@@ -2,11 +2,14 @@ package com.example.fitnesstracker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,17 +27,38 @@ import java.util.concurrent.ExecutionException;
 public class HomeFragment extends Fragment {
     private List<Excercise> exos;
     private User user;
+    private EditText etSearch;
+    private CustomListAdapter adapter1;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_home, container, false);
+
+        etSearch = (EditText) view.findViewById(R.id.etSearch);
         List<Excercise> image_details = getListData();
         final ListView listView = (ListView) view.findViewById(R.id.listView);
-        listView.setAdapter(new CustomListAdapter(getActivity(), image_details));
+        adapter1=new CustomListAdapter(getActivity(), image_details);
+        listView.setAdapter(adapter1);
 
         Intent i = getActivity().getIntent();
         user = (User)i.getSerializableExtra("user");
+        etSearch.addTextChangedListener(new TextWatcher() {
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Call back the Adapter with current character to Filter
+                adapter1.getFilter().filter(s.toString());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
         // When the user clicks on the ListItem
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -43,10 +67,7 @@ public class HomeFragment extends Fragment {
                 Object o = listView.getItemAtPosition(position);
                 Excercise exo = (Excercise) o;
                 Toast.makeText(getActivity(), "Selected :" + " " + exo, Toast.LENGTH_LONG).show();
-               /* Intent i = new Intent(getActivity(), Exerciseinfo.class);
-                i.putExtra("Exo",exo);
-                i.putExtra("user",user);
-                startActivity(i);*/
+
                 FragmentTransaction ft =  getActivity().getSupportFragmentManager().beginTransaction();
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 Exerciseinfo exoinfo = new Exerciseinfo();
