@@ -46,6 +46,8 @@ public class Exerciseinfo extends AppCompatActivity {
     EditText reps;
 
     EditText mDateFormat;
+    Excercise exo;
+    User user;
     //Date picker
     DatePickerDialog.OnDateSetListener  onDateSetListener;
 
@@ -59,7 +61,7 @@ public class Exerciseinfo extends AppCompatActivity {
     private ListView listView;
 
     Date c = Calendar.getInstance().getTime();
-    SimpleDateFormat df = new SimpleDateFormat("dd/MMM/yyyy", Locale.getDefault());
+    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
     String formattedDate = df.format(c);
 
     @Override
@@ -74,15 +76,15 @@ public class Exerciseinfo extends AppCompatActivity {
         weight=findViewById(R.id.TextNumber_weight);
         reps=findViewById(R.id.TextNumber_Reps);
         Intent i = getIntent();
-        final Excercise[] exo = {(Excercise) i.getSerializableExtra("Exo")};
-        final User[] user = {(User) i.getSerializableExtra("user")};
-        exoTitle.setText(exo[0].getTitle());
-        Picasso.with(getApplicationContext()).load(exo[0].getImage())
+        exo = (Excercise) i.getSerializableExtra("Exo");
+        user = (User) i.getSerializableExtra("user");
+        exoTitle.setText(exo.getTitle());
+        Picasso.with(getApplicationContext()).load(exo.getImage())
                 .into(exoImg);
 
        
         listView = findViewById(R.id.listView);
-        trackerlArrayList=getData(user[0].getUsername(),String.valueOf(exo[0].getId()),formattedDate);
+        trackerlArrayList=getData(user.getUsername(),String.valueOf(exo.getId()),formattedDate);
 
         RepsAdapter repsAdapter = new RepsAdapter(this,trackerlArrayList);
         listView.setAdapter(repsAdapter);
@@ -132,7 +134,7 @@ public class Exerciseinfo extends AppCompatActivity {
                 }
 
 
-                trackerlArrayList =  getData(user[0].getUsername(),String.valueOf(exo[0].getId()),mDateFormat.getText().toString());
+                trackerlArrayList =  getData(user.getUsername(),String.valueOf(exo.getId()),mDateFormat.getText().toString());
                 RepsAdapter repsAdapter1 = new RepsAdapter(Exerciseinfo.this,trackerlArrayList);
                 listView.setAdapter(repsAdapter1);
 
@@ -174,14 +176,17 @@ public class Exerciseinfo extends AppCompatActivity {
             public void onClick(View v) {
 
                 // String userid,exoid,weight,reps;
-                String userid= user[0].getUsername();
-                String exoid=String.valueOf(exo[0].getId());
+                String userid= user.getUsername();
+                String exoid=String.valueOf(exo.getId());
                 String inputweight=weight.getText().toString();
                 String inputreps=reps.getText().toString();
 
                 try {
                     Log.d("before","beeeee");
                     String str = new TrackingDao().execute(userid,exoid,inputweight,inputreps).get();
+                    trackerlArrayList =  getData(user.getUsername(),String.valueOf(exo.getId()),formattedDate);
+                    RepsAdapter repsAdapter2 = new RepsAdapter(Exerciseinfo.this,trackerlArrayList);
+                    listView.setAdapter(repsAdapter2);
                     //Log.d("erroooooooooor",str);
                 }
                 catch (ExecutionException e) {

@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -17,7 +18,7 @@ public class TrackingDao extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
-
+         DecimalFormat df = new DecimalFormat("0.00");
         String str=null;
         try {
 
@@ -28,7 +29,7 @@ public class TrackingDao extends AsyncTask<String, Void, String> {
 
             double weight=Double.valueOf(params[2]);
             int reps=Integer.valueOf(params[3]);
-            double repmax=weight/( 1.0278 - 0.0278 * reps );
+            double repmax=Math.round(weight/( 1.0278 - 0.0278 * reps ));;
 
 
 
