@@ -7,6 +7,8 @@ import com.example.fitnesstracker.model.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class SignupDao extends AsyncTask<String, Void, User> {
 
@@ -44,8 +46,22 @@ public class SignupDao extends AsyncTask<String, Void, User> {
             statement.setDouble(6,Double.parseDouble(weight));
             statement.setString(7,firstname);
             statement.setString(8,lastname);
-            //Log.d("username",username);
-            //statement.setString(9,null);
+            statement.executeUpdate();
+
+            String sql_conversation="INSERT INTO chatconversation(client) VALUES(?)";
+            String generatedColumns[] = { "id" };
+            statement=connection.prepareStatement(sql_conversation, generatedColumns);
+            statement.setString(1,username);
+            statement.executeUpdate();
+
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            int id=generatedKeys.getInt(1);
+
+            String first_message="INSERT INTO chatmessage(text,conversation_id,flag) VALUES(?,?,?)";
+            statement=connection.prepareStatement(first_message);
+            statement.setString(1,"Welcome!");
+            statement.setInt(2,id);
+            statement.setInt(3,0);
             statement.executeUpdate();
 
             user = new User();
