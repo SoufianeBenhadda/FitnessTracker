@@ -2,30 +2,18 @@ package com.example.fitnesstracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.fitnesstracker.dao.ClientDao;
-import com.example.fitnesstracker.dao.ConversationDao;
 import com.example.fitnesstracker.dao.GetMessagesDao;
 import com.example.fitnesstracker.dao.SendChatMessageDao;
-import com.example.fitnesstracker.model.ChatConversation;
 import com.example.fitnesstracker.model.ChatMessage;
-import com.example.fitnesstracker.model.User;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -63,16 +51,6 @@ public class PrivateConversation extends AppCompatActivity {
 
         ChatAdapter adapter=new ChatAdapter();
         chatmessages.setAdapter(adapter);
-
-        chatmessages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                /*Intent intent=new Intent(getApplicationContext(),PrivateConversation.class);
-                intent.putExtra("client",chat_messages.get(position).getText());
-                startActivity(intent);*/
-            }
-        });
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,18 +93,20 @@ public class PrivateConversation extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            View view1 = getLayoutInflater().inflate(R.layout.msgs_list,null);
-            TextView sender = view1.findViewById(R.id.c_message);
-            sender.setText(chat_messages.get(position).getText());
+            //View view1 = getLayoutInflater().inflate(R.layout.msgs_list_sender,null);
+            View view1;
+            TextView message;
             int flag=chat_messages.get(position).getFlag();
             if(flag==0) {
-                sender.setTextColor(Color.parseColor("#00ff00"));
-                sender.setGravity(Gravity.RIGHT);
+                view1 = getLayoutInflater().inflate(R.layout.msgs_list_sender,null);
+                message = view1.findViewById(R.id.c_message1);
+                message.setText(chat_messages.get(position).getText());
             }
-            else
-                sender.setTextColor(Color.parseColor("#ff0000"));
-            //sender.setTextColor(Color.parseColor("#ff0000"));
-            //title.setText(messages.get(i).getTitle());
+            else{
+                view1 = getLayoutInflater().inflate(R.layout.msg_list_receiver,null);
+                message = view1.findViewById(R.id.c_message2);
+                message.setText(chat_messages.get(position).getText());
+            }
             return view1;
         }
     }

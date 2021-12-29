@@ -7,9 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,11 +17,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fitnesstracker.fragments.ChatFragment;
+import com.example.fitnesstracker.fragments.HomeFragment;
+import com.example.fitnesstracker.fragments.ProfileFragment;
 import com.example.fitnesstracker.model.User;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
-
-import java.nio.BufferUnderflowException;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
@@ -105,7 +104,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 Toast.makeText(this, "Chat", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
-                startActivity(new Intent(getApplicationContext(),Login.class));
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 Toast.makeText(this, "logout", Toast.LENGTH_SHORT).show();
                 break;
 

@@ -1,4 +1,4 @@
-package com.example.fitnesstracker;
+package com.example.fitnesstracker.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.fitnesstracker.R;
 import com.example.fitnesstracker.dao.ProfileDao;
 import com.example.fitnesstracker.model.User;
 import com.squareup.picasso.Picasso;
@@ -47,8 +48,6 @@ public class ProfileFragment  extends Fragment {
         ed_h=view.findViewById(R.id.e_h);
 
         iv=view.findViewById(R.id.pic);
-        //Intent i =getIntent();
-        //user = (User)i.getSerializableExtra("user");
         fl.setText(firstName+" "+lastName);
         vusern.setText(username);
         ed_age.setText(Integer.toString(age));
@@ -82,10 +81,9 @@ public class ProfileFragment  extends Fragment {
                 catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-               /* Intent i = new Intent(getApplicationContext(), Profile.class);
-                i.putExtra("user",user);
-                startActivity(i);*/
-                Toast toast=Toast.makeText(getActivity(),"Profile Update Successfully",Toast.LENGTH_LONG);
+
+                Toast toast=Toast.makeText(getActivity(),"Profile Update Successfully",
+                        Toast.LENGTH_LONG);
                 toast.show();
             }
 

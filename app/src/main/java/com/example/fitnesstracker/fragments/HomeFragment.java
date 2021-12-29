@@ -1,10 +1,9 @@
-package com.example.fitnesstracker;
+package com.example.fitnesstracker.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.fitnesstracker.adapters.ExerciceAdapter;
+import com.example.fitnesstracker.R;
 import com.example.fitnesstracker.dao.HomeDao;
 import com.example.fitnesstracker.model.Excercise;
 import com.example.fitnesstracker.model.User;
@@ -28,7 +29,7 @@ public class HomeFragment extends Fragment {
     private List<Excercise> exos;
     private User user;
     private EditText etSearch;
-    private CustomListAdapter adapter1;
+    private ExerciceAdapter adapter1;
 
     @Nullable
     @Override
@@ -36,9 +37,18 @@ public class HomeFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_home, container, false);
 
         etSearch = (EditText) view.findViewById(R.id.etSearch);
-        List<Excercise> image_details = getListData();
+        etSearch.setHint("\uD83D\uDD0D Search");
+        List<Excercise> exercices= null;
+        try {
+            exercices = new HomeDao().execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         final ListView listView = (ListView) view.findViewById(R.id.listView);
-        adapter1=new CustomListAdapter(getActivity(), image_details);
+        listView.setDivider(null);
+        adapter1=new ExerciceAdapter(getActivity(), exercices);
         listView.setAdapter(adapter1);
 
         Intent i = getActivity().getIntent();
@@ -59,7 +69,7 @@ public class HomeFragment extends Fragment {
             public void afterTextChanged(Editable s) {
             }
         });
-        // When the user clicks on the ListItem
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -84,34 +94,5 @@ public class HomeFragment extends Fragment {
         });
         return view;
     }
-    private List<Excercise> getListData() {
-        try {
-            exos=new HomeDao().execute().get();
-        }
-        catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        if(exos==null){
-            Toast toast=Toast.makeText(getActivity(),"No data",Toast.LENGTH_LONG);
-            toast.show();
-            Log.d("myerror","Error");
-        }
-        else{
-
-            Toast toast=Toast.makeText(getActivity(),"yes data",Toast.LENGTH_LONG);
-            toast.show();
-            Log.d("logged","Logged");
-
-        }
-        return exos;
-
-
-    }
-
-
-
 
 }

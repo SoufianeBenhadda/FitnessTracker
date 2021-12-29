@@ -74,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("test",e.toString());
                 }
                 if(user==null){
-                    Toast toast=Toast.makeText(getApplicationContext(),"Your username or password is incorrect",Toast.LENGTH_LONG);
+                    Toast toast=Toast.makeText(getApplicationContext(),"Your username or password " +
+                            "is incorrect",Toast.LENGTH_LONG);
                     toast.show();
                     Log.d("myerror","Error");
                 }

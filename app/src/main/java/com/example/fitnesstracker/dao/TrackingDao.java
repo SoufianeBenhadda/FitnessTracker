@@ -27,11 +27,10 @@ public class TrackingDao extends AsyncTask<String, Void, String> {
 
 
 
-            //Connection connection=new DBConnexion().getConnection();
+
             Class.forName("com.mysql.jdbc.Driver");
-            //Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.12:3306/fitness", "user1", "1234");
-           // Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11458541", "sql11458541", "KV5M53tUtZ");            //Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11452971", "sql11452971", "WAYSFm5dqX");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11460118", "sql11460118", "nlikDMLg5c");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://sql4.freemysqlhosting.net:3306/sql4461783",
+                    "sql4461783", "57Jn33Hwd4");
 
 
             String sql="INSERT INTO tracker(userid,excerciseid,date,weight,reps,repmax)" +
@@ -44,19 +43,16 @@ public class TrackingDao extends AsyncTask<String, Void, String> {
             statement.setInt(5,reps);
             statement.setDouble(6,repmax);
 
-            //Log.d("username",username);
-            //statement.setString(9,null);
+
             statement.execute();
 
 
-            //user.setPicture(rs.getString("picture"));
 
             connection.close();
 
         }
         catch(Exception e)
         {
-            //error = e.toString();
             str=e.toString();
         }
 

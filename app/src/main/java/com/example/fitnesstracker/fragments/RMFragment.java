@@ -1,4 +1,4 @@
-package com.example.fitnesstracker;
+package com.example.fitnesstracker.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.fitnesstracker.R;
 import com.example.fitnesstracker.dao.GraphDao;
 import com.example.fitnesstracker.model.Excercise;
 import com.example.fitnesstracker.model.Tracker;
@@ -40,9 +41,6 @@ public class RMFragment extends Fragment {
 
 
         Log.d("before","intent");
-        /*Intent i = getIntent();
-        Excercise exo = (Excercise) i.getSerializableExtra("Exo");
-        User user = (User) i.getSerializableExtra("user");*/
 
         Bundle bundle = getArguments();
 

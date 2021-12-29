@@ -8,11 +8,24 @@
         <entry key="..\:/Users/Hp User/AndroidStudioProjects/FitnessTracker/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Hp User/AndroidStudioProjects/FitnessTracker/app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/drawable-v24/gradient.xml" value="0.1" />
+        <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/drawable/chat_design.xml" value="0.1" />
+        <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/drawable/chat_design_receiver.xml" value="0.18981481481481483" />
+        <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/drawable/chat_design_sender.xml" value="0.14114583333333333" />
+        <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/drawable/msg_borders.xml" value="0.18981481481481483" />
+        <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/drawable/rounded_fg.xml" value="0.14114583333333333" />
+        <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/layout/activity_card.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/layout/activity_private_conversation.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/layout/chat_msg.xml" value="0.125" />
+        <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/layout/fragment_chat.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/layout/fragment_exerciseinfo.xml" value="0.1" />
         <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/layout/fragment_r_m.xml" value="0.1" />
+        <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/layout/list_item.xml" value="0.125" />
+        <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/layout/msg_list_receiver.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/layout/msgs_list.xml" value="0.125" />
+        <entry key="..\:/Users/Hp User/Documents/Mobile/FitnessTracker/app/src/main/res/layout/msgs_list_sender.xml" value="0.24609375" />
         <entry key="..\:/Users/Imane/AndroidStudioProjects/FitnessTracker/app/src/main/res/drawable/custom_input.xml" value="0.1814814814814815" />
         <entry key="..\:/Users/Imane/AndroidStudioProjects/FitnessTracker/app/src/main/res/drawable/rounded_fg.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Imane/AndroidStudioProjects/FitnessTracker/app/src/main/res/font/font.xml" value="0.20572916666666666" />

@@ -78,13 +78,9 @@ public class Conversations extends AppCompatActivity {
                 }
 
                 TextView sender = view1.findViewById(R.id.c_user);
-                //sender.setText(conversation_users.get(position).getClient());
                 sender.setText(client.getFirstName()+" "+client.getLastName());
                 ImageView picture = view1.findViewById(R.id.imageView2);
-                /*if(!client.getPicture().equals(null) || !client.getPicture().equals(""))
-                    Picasso.with(getApplicationContext()).load(client.getPicture())
-                        .into(picture);
-                else{*/
+
                 if(client.getGender().equals("female"))
                     Picasso.with(getApplicationContext()).load("https://i.postimg.cc/XJ8HZ7Ly/petite-fille.png")
                             .into(picture);
@@ -92,7 +88,7 @@ public class Conversations extends AppCompatActivity {
                     Picasso.with(getApplicationContext()).load("https://i.postimg.cc/9Q7LdB12/profil.png")
                             .into(picture);
                 }
-                //}
+
                 return view1;
             }
         });

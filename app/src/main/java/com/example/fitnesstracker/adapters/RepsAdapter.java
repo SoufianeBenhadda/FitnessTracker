@@ -1,4 +1,4 @@
-package com.example.fitnesstracker;
+package com.example.fitnesstracker.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.fitnesstracker.R;
 import com.example.fitnesstracker.model.Tracker;
 
 import java.util.ArrayList;
@@ -62,7 +63,6 @@ public class RepsAdapter extends BaseAdapter {
 
             convertView.setTag(holder);
         }else {
-            // the getTag returns the viewHolder object set as a tag to the view
             holder = (ViewHolder)convertView.getTag();
         }
 

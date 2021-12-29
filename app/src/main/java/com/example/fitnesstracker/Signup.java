@@ -71,15 +71,18 @@ public class Signup extends AppCompatActivity {
                 if (rgroup.getCheckedRadioButtonId() == R.id.radioButton) gender = "female";
                 else gender = "male";
 
-                if (usr.length() == 0 || pwd.length() == 0 || s_age.length() == 0 || s_height.length() == 0 || s_weight.length() == 0 || s_firstname.length() == 0
+                if (usr.length() == 0 || pwd.length() == 0 || s_age.length() == 0 || s_height.length() == 0
+                        || s_weight.length() == 0 || s_firstname.length() == 0
                         || s_lastname.length() == 0) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Please make sure you entered all the fields", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Please make " +
+                            "sure you entered all the fields", Toast.LENGTH_LONG);
                     toast.show();
                 }
                 else {
 
                     if (!pwd.equals(s_confirm_password)) {
-                        Toast toast = Toast.makeText(getApplicationContext(), "Please make sure your passwords match", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(getApplicationContext(), "Please " +
+                                "make sure your passwords match", Toast.LENGTH_LONG);
                         toast.show();
                     } else {
                         AlertDialog.Builder buildDialog = new AlertDialog.Builder(Signup.this);
@@ -103,7 +106,8 @@ public class Signup extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                Toast toast = Toast.makeText(getApplicationContext(), "User successfully registered", Toast.LENGTH_LONG);
+                                Toast toast = Toast.makeText(getApplicationContext(), "User successfully " +
+                                        "registered", Toast.LENGTH_LONG);
                                 toast.show();
                             }
                         });

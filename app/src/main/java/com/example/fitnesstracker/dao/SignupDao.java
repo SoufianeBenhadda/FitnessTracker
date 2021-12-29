@@ -29,18 +29,9 @@ public class SignupDao extends AsyncTask<String, Void, User> {
 
             //Connection connection=new DBConnexion().getConnection();
             Class.forName("com.mysql.jdbc.Driver");
-            //Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.12:3306/fitness", "user1", "1234");
-           // Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11458541", "sql11458541", "KV5M53tUtZ");
-            //Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11452971", "sql11452971", "WAYSFm5dqX");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11460118", "sql11460118", "nlikDMLg5c");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://sql4.freemysqlhosting.net:3306/sql4461783",
+                    "sql4461783", "57Jn33Hwd4");
 
-            /*String sql="INSERT INTO user (username,password,age,gender,height,weight,firstName,lastName)" +
-                    " VALUES('"+username+"','"+password+"',"+Integer.parseInt(age)+",'"
-                    +gender+"',"+Double.parseDouble(height)+","+Double.parseDouble(weight)+
-                    ",'"+firstname+"','"+lastname+"')";
-
-            Statement st=connection.createStatement();
-            st.executeUpdate(sql);*/
 
             String sql="INSERT INTO user(username,password,age,gender,height,weight,firstName,lastName)" +
                     " VALUES(?,?,?,?,?,?,?,?)";

@@ -25,7 +25,8 @@ public class GraphDao extends AsyncTask<String, Void, List<Tracker>> {
             Class.forName("com.mysql.jdbc.Driver");
             //Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.12:3306/fitness", "user1", "1234");
 
-            Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11460118", "sql11460118", "nlikDMLg5c");            //Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11452971", "sql11452971", "WAYSFm5dqX");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://sql4.freemysqlhosting.net:3306/sql4461783",
+                    "sql4461783", "57Jn33Hwd4");          //Connection connection = DriverManager.getConnection("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11452971", "sql11452971", "WAYSFm5dqX");
 
 
             PreparedStatement statement = connection.prepareStatement("SELECT Max(repmax),id,userid,excerciseid,date,repmax,reps,weight from tracker where userid=? and excerciseid=? group by date ");
