@@ -3,11 +3,13 @@ package com.example.fitnesstracker.fragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +45,8 @@ public class ChatFragment extends Fragment {
         send=view.findViewById(R.id.button8);
         message=view.findViewById(R.id.cl_type);
 
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
         SharedPreferences sp=getActivity().getSharedPreferences("session", Context.MODE_PRIVATE);
         String username=sp.getString("session_username","");
 
@@ -66,7 +70,7 @@ public class ChatFragment extends Fragment {
                     String text=message.getText().toString();
                     current_message=new SendChatMessageDao().execute(Integer.toString(chat_messages.get(0).getConversation_id()),text,"1").get();
                     chat_messages.add(current_message);
-                    adapter.notifyDataSetChanged();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(ChatFragment.this.getId(), new ChatFragment()).commit();
                     message.setText("");
                 }
                 catch (ExecutionException e) {
@@ -80,6 +84,7 @@ public class ChatFragment extends Fragment {
 
         return view;
 
+
 }
     private class ChatAdapter extends BaseAdapter {
         @Override
@@ -89,7 +94,7 @@ public class ChatFragment extends Fragment {
 
         @Override
         public Object getItem(int position) {
-            return null;
+            return chat_messages.get(position);
         }
 
         @Override
@@ -102,14 +107,14 @@ public class ChatFragment extends Fragment {
             View view1;
             TextView message;
             int flag=chat_messages.get(position).getFlag();
-            if(flag==1) {
-                view1 = getLayoutInflater().inflate(R.layout.msgs_list_sender,null);
-                message = view1.findViewById(R.id.c_message1);
+            if(flag==0) {
+                view1 = getLayoutInflater().inflate(R.layout.msg_list_receiver,null);
+                message = view1.findViewById(R.id.c_message2);
                 message.setText(chat_messages.get(position).getText());
             }
             else{
-                view1 = getLayoutInflater().inflate(R.layout.msg_list_receiver,null);
-                message = view1.findViewById(R.id.c_message2);
+                view1 = getLayoutInflater().inflate(R.layout.msgs_list_sender,null);
+                message = view1.findViewById(R.id.c_message1);
                 message.setText(chat_messages.get(position).getText());
             }
             return view1;

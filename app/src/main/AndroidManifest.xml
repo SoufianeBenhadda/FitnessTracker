@@ -13,7 +13,8 @@
         android:theme="@style/Theme.FitnessTracker">
         <activity
             android:name=".PrivateConversation"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|stateVisible|adjustPan"/>
         <activity
             android:name=".Conversations"
             android:exported="false" />
@@ -24,7 +25,8 @@
         <activity
             android:name=".Home"
             android:exported="true"
-            android:theme="@style/Theme.FitnessTracker.NoActionBar" />
+            android:theme="@style/Theme.FitnessTracker.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateVisible|adjustPan"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

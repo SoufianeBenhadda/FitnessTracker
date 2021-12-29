@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,7 @@ public class PrivateConversation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_private_conversation);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         chatmessages=findViewById(R.id.chat);
         chatmessages.setDivider(null);
@@ -57,12 +59,10 @@ public class PrivateConversation extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     String text=message.getText().toString();
-                    //String error;
                     current_message=new SendChatMessageDao().execute(Integer.toString(conversation_id),text,"0").get();
                     chat_messages.add(current_message);
                     adapter.notifyDataSetChanged();
                     message.setText("");
-                    //Log.d("error",error);
                 }
                 catch (ExecutionException e) {
                     e.printStackTrace();
